@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Chill! | inorganik</title>
+</head>
+
+<body onLoad="initChill()">
+<style type="text/css">
+input#chill {
+	float:left;
+	width:auto;
+	height:26px;
+	margin:5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	font:normal 11px/11px "Lucida Grande", "Lucida Sans Unicode", sans-serif!important;
+	text-decoration:none!important;
+	cursor:pointer;
+}
+.chillbkgd:hover {
+	border:1px #305d99 solid!important;
+}
+.chillbkgd {
+	color:#305d99!important;
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 25px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/chill.gif) 4px center no-repeat;
+}
+.clicked {
+	color:#999999;
+	border:1px #999999 solid;
+	padding:4px 5px 5px 20px;
+	background:#CCC url(http://www.inorganik.net/_images/like_btns/clicked.gif) 4px center no-repeat;
+}
+.clicked:hover {	
+	border:1px #666666 solid;
+}
+</style>
+<script type="text/javascript">
+
+function Set_Cookie( name, value, expires, path, domain, secure ) {
+	 
+	var today = new Date();
+	today.setTime( today.getTime() );
+	
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;
+	}
+	var expires_date = new Date( today.getTime() + (expires) );
+	
+	document.cookie = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" );
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+function Chill() {
+	var chillStatus = readCookie("chilled");
+	if (chillStatus == 1) {
+		document.getElementById("chill").className = "chillbkgd";
+		document.getElementById("chill").value = "Chill";
+		Set_Cookie("chilled", 0, -1);
+	} else {
+		document.getElementById("chill").className = "clicked";
+		document.getElementById("chill").value = "Chilled";
+		Set_Cookie("chilled", 1, 365);
+	}
+}
+function initChill() {
+	var chillStatus = readCookie("chilled");
+	if (chillStatus == 1) {
+		document.getElementById("chill").className = "clicked";
+		document.getElementById("chill").value = "Chilled";
+	}
+}
+</script>
+<input type="button" id="chill" class="chillbkgd" onClick="Chill()" value="Chill">
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Put a ring on this! | inorganik</title>
+</head>
+
+<body onLoad="initRingon()">
+<style type="text/css">
+input#ringonthis {
+	float:left;
+	width:auto;
+	height:26px;
+	margin:5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	font:normal 11px/11px "Lucida Grande", "Lucida Sans Unicode", sans-serif!important;
+	text-decoration:none!important;
+	cursor:pointer;
+}
+.ringonthisbkgd:hover {
+	border:1px #305d99 solid!important;
+}
+.ringonthisbkgd {
+	color:#305d99!important;	
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 27px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/put_a_ring_on_it.gif) 6px center no-repeat;
+}
+.clicked {
+	color:#999999;
+	border:1px #999999 solid;
+	padding:4px 5px 5px 20px;
+	background:#CCC url(http://www.inorganik.net/_images/like_btns/clicked.gif) 4px center no-repeat;
+}
+.clicked:hover {	
+	border:1px #666666 solid;
+}
+</style>
+<script type="text/javascript">
+function Set_Cookie( name, value, expires, path, domain, secure ) {
+	 
+	var today = new Date();
+	today.setTime( today.getTime() );
+	
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;
+	}
+	var expires_date = new Date( today.getTime() + (expires) );
+	
+	document.cookie = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" );
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function Ringon() {
+	var ringStatus = readCookie("engaged");
+	if (ringStatus == 1) {
+		document.getElementById("ringonthis").className = "ringonthisbkgd";
+		document.getElementById("ringonthis").value = "Put a ring on this";
+		Set_Cookie("engaged", 0, -1);
+	} else {
+		document.getElementById("ringonthis").className = "clicked";
+		document.getElementById("ringonthis").value = "Engaged";
+		Set_Cookie("engaged", 1, 365);
+	}
+}
+function initRingon() {
+	var ringStatus = readCookie("engaged");
+	if (ringStatus == 1) {
+		document.getElementById("ringonthis").className = "clicked";
+		document.getElementById("ringonthis").value = "Engaged";
+	}
+}
+
+</script>
+<input type="button" id="ringonthis" class="ringonthisbkgd" onClick="Ringon()" value="Put a ring on this">
+</body>
+</html>

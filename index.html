@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Like this! | inorganik</title>
+</head>
+
+<body onLoad="initButtons()">
+<style type="text/css">
+input#chill, input#fuckthis, input#punchthis, input#rockthis, input#ringonthis {
+	float:left;
+	width:auto;
+	height:26px;
+	margin:10px 5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	font:normal 11px/11px "Lucida Grande", "Lucida Sans Unicode", sans-serif!important;
+	text-decoration:none!important;
+	cursor:pointer;
+}
+.chillbkgd:hover, .fuckthisbkgd:hover, .punchthisbkgd:hover, .rockthisbkgd:hover, .ringonthisbkgd:hover {
+	border:1px #305d99 solid!important;
+}
+.chillbkgd {
+	color:#305d99!important;
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 25px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/chill.gif) 4px center no-repeat;
+}
+
+.fuckthisbkgd {
+	color:#305d99!important;
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 29px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/fuck_this.gif) 4px center no-repeat;
+}
+
+.punchthisbkgd {	
+	color:#305d99!important;
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 27px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/punch.gif) 4px center no-repeat;
+}
+
+.rockthisbkgd {	
+	color:#305d99!important;
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 27px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/rock.gif) 4px center no-repeat;
+}
+
+.ringonthisbkgd {
+	color:#305d99!important;	
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 27px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/put_a_ring_on_it.gif) 6px center no-repeat;
+}
+.clicked {
+	color:#999999;
+	border:1px #999999 solid;
+	padding:4px 5px 5px 20px;
+	background:#CCC url(http://www.inorganik.net/_images/like_btns/clicked.gif) 4px center no-repeat;
+}
+.clicked:hover {	
+	border:1px #666666 solid;
+}
+</style>
+<script type="text/javascript">
+
+function Set_Cookie( name, value, expires, path, domain, secure ) {
+	 
+	var today = new Date();
+	today.setTime( today.getTime() );
+	
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;
+	}
+	var expires_date = new Date( today.getTime() + (expires) );
+	
+	document.cookie = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" );
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+function Chill() {
+	var chillStatus = readCookie("chilled");
+	if (chillStatus == 1) {
+		document.getElementById("chill").className = "chillbkgd";
+		document.getElementById("chill").value = "Chill";
+		Set_Cookie("chilled", 0, -1);
+	} else {
+		document.getElementById("chill").className = "clicked";
+		document.getElementById("chill").value = "Chilled";
+		Set_Cookie("chilled", 1, 365);
+	}
+}
+function Punch() {
+	var punchStatus = readCookie("punched");
+	if (punchStatus == 1) {
+		document.getElementById("punchthis").className = "punchthisbkgd";
+		document.getElementById("punchthis").value = "Punch this";
+		Set_Cookie("punched", 0, -1);
+	} else {
+		document.getElementById("punchthis").className = "clicked";
+		document.getElementById("punchthis").value = "Punched";
+		Set_Cookie("punched", 1, 365);
+	}
+}
+function Rock() {
+	var rockStatus = readCookie("rocked");
+	if (rockStatus == 1) {
+		document.getElementById("rockthis").className = "rockthisbkgd";
+		document.getElementById("rockthis").value = "Rock this";
+		Set_Cookie("rocked", 0, -1);
+	} else {
+		document.getElementById("rockthis").className = "clicked";
+		document.getElementById("rockthis").value = "Rocked";
+		Set_Cookie("rocked", 1, 365);
+	}
+}
+function Fuck() {
+	var fuckStatus = readCookie("fucked");
+	if (fuckStatus == 1) {
+		document.getElementById("fuckthis").className = "fuckthisbkgd";
+		document.getElementById("fuckthis").value = "Fuck this";
+		Set_Cookie("fucked", 0, -1);
+	} else {
+		document.getElementById("fuckthis").className = "clicked";
+		document.getElementById("fuckthis").value = "Fucked";
+		Set_Cookie("fucked", 1, 365);
+	}
+}
+function Ringon() {
+	var ringStatus = readCookie("engaged");
+	if (ringStatus == 1) {
+		document.getElementById("ringonthis").className = "ringonthisbkgd";
+		document.getElementById("ringonthis").value = "Put a ring on this";
+		Set_Cookie("engaged", 0, -1);
+	} else {
+		document.getElementById("ringonthis").className = "clicked";
+		document.getElementById("ringonthis").value = "Engaged";
+		Set_Cookie("engaged", 1, 365);
+	}
+}
+function initButtons() {
+	var chillStatus = readCookie("chilled");
+	if (chillStatus == 1) {
+		document.getElementById("chill").className = "clicked";
+		document.getElementById("chill").value = "Chilled";
+	}
+	var punchStatus = readCookie("punched");
+	if (punchStatus == 1) {
+		document.getElementById("punchthis").className = "clicked";
+		document.getElementById("punchthis").value = "Punched";
+	}
+	var rockStatus = readCookie("rocked");
+	if (rockStatus == 1) {
+		document.getElementById("rockthis").className = "clicked";
+		document.getElementById("rockthis").value = "Rocked";
+	}
+	var rockStatus = readCookie("fucked");
+	if (rockStatus == 1) {
+		document.getElementById("fuckthis").className = "clicked";
+		document.getElementById("fuckthis").value = "Fucked";
+	}
+	var rockStatus = readCookie("engaged");
+	if (rockStatus == 1) {
+		document.getElementById("fuckthis").className = "clicked";
+		document.getElementById("fuckthis").value = "Fucked";
+	}
+	var ringStatus = readCookie("engaged");
+	if (ringStatus == 1) {
+		document.getElementById("ringonthis").className = "clicked";
+		document.getElementById("ringonthis").value = "Engaged";
+	}
+}
+
+</script>
+
+<input type="button" id="chill" class="chillbkgd" onClick="Chill()" value="Chill">
+
+<input type="button" id="punchthis" class="punchthisbkgd" onClick="Punch()" value="Punch this">
+
+<input type="button" id="fuckthis" class="fuckthisbkgd" onClick="Fuck()" value="Fuck this">
+
+<input type="button" id="rockthis" class="rockthisbkgd" onClick="Rock()" value="Rock this">
+
+<input type="button" id="ringonthis" class="ringonthisbkgd" onClick="Ringon()" value="Put a ring on this">
+
+</body>
+</html>

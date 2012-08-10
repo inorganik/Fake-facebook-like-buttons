@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rock this! | inorganik</title>
+</head>
+
+<body onLoad="initRockthis()">
+<style type="text/css">
+input#rockthis {
+	float:left;
+	width:auto;
+	height:26px;
+	margin:5px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	font:normal 11px/11px "Lucida Grande", "Lucida Sans Unicode", sans-serif!important;
+	text-decoration:none!important;
+	cursor:pointer;
+}
+.rockthisbkgd:hover {
+	border:1px #305d99 solid!important;
+}
+.rockthisbkgd {	
+	color:#305d99!important;
+	border:1px #9dacce solid!important;
+	padding:4px 5px 5px 27px;
+	background:#eceef5 url(http://www.inorganik.net/_images/like_btns/rock.gif) 4px center no-repeat;
+}
+.clicked {
+	color:#999999;
+	border:1px #999999 solid;
+	padding:4px 5px 5px 20px;
+	background:#CCC url(http://www.inorganik.net/_images/like_btns/clicked.gif) 4px center no-repeat;
+}
+.clicked:hover {	
+	border:1px #666666 solid;
+}
+</style>
+<script type="text/javascript">
+function Set_Cookie( name, value, expires, path, domain, secure ) {
+	 
+	var today = new Date();
+	today.setTime( today.getTime() );
+	
+	if ( expires ) {
+		expires = expires * 1000 * 60 * 60 * 24;
+	}
+	var expires_date = new Date( today.getTime() + (expires) );
+	
+	document.cookie = name + "=" +escape( value ) +
+	( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+	( ( path ) ? ";path=" + path : "" ) +
+	( ( domain ) ? ";domain=" + domain : "" ) +
+	( ( secure ) ? ";secure" : "" );
+}
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+function Rock() {
+	var rockStatus = readCookie("rocked");
+	if (rockStatus == 1) {
+		document.getElementById("rockthis").className = "rockthisbkgd";
+		document.getElementById("rockthis").value = "Rock this";
+		Set_Cookie("rocked", 0, -1);
+	} else {
+		document.getElementById("rockthis").className = "clicked";
+		document.getElementById("rockthis").value = "Rocked";
+		Set_Cookie("rocked", 1, 365);
+	}
+}
+function initRockthis() {
+	var rockStatus = readCookie("engaged");
+	if (rockStatus == 1) {
+		document.getElementById("fuckthis").className = "clicked";
+		document.getElementById("fuckthis").value = "Fucked";
+	}
+}
+</script>
+<input type="button" id="rockthis" class="rockthisbkgd" onClick="Rock()" value="Rock this">
+</body>
+</html>
