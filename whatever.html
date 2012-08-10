@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Whatever! | inorganik</title>
+</head>
+
+<body onLoad="initWhatever()">
+<style type="text/css">
+input#whatever {
+  float:left;
+  width:auto;
+  height:26px;
+  margin:5px;
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+  border-radius:4px;
+  font:normal 11px/11px "Lucida Grande", "Lucida Sans Unicode", sans-serif!important;
+  text-decoration:none!important;
+  cursor:pointer;
+}
+.whateverbkgd:hover {
+  border:1px #305d99 solid!important;
+}
+.whateverbkgd {
+  color:#305d99!important;
+  border:1px #9dacce solid!important;
+  padding:4px 5px 5px 25px;
+  background:#eceef5 url(https://raw.github.com/Hoosteeno/Fake-facebook-like-buttons/master/images/whatever.gif) 4px center no-repeat;
+  -moz-background-size: 16px 24px;
+  background-size: 16px 24px;
+}
+.clicked {
+  color:#999999;
+  border:1px #999999 solid;
+  padding:4px 5px 5px 20px;
+  background:#CCC url(https://raw.github.com/Hoosteeno/Fake-facebook-like-buttons/master/images/clicked.gif) 4px center no-repeat;
+}
+.clicked:hover {  
+  border:1px #666666 solid;
+}
+</style>
+<script type="text/javascript">
+
+function Set_Cookie( name, value, expires, path, domain, secure ) {
+   
+  var today = new Date();
+  today.setTime( today.getTime() );
+  
+  if ( expires ) {
+    expires = expires * 1000 * 60 * 60 * 24;
+  }
+  var expires_date = new Date( today.getTime() + (expires) );
+  
+  document.cookie = name + "=" +escape( value ) +
+  ( ( expires ) ? ";expires=" + expires_date.toGMTString() : "" ) +
+  ( ( path ) ? ";path=" + path : "" ) +
+  ( ( domain ) ? ";domain=" + domain : "" ) +
+  ( ( secure ) ? ";secure" : "" );
+}
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+function Whatever() {
+  var whateverStatus = readCookie("whatevered");
+  if (whateverStatus == 1) {
+    document.getElementById("whatever").className = "whateverbkgd";
+    document.getElementById("whatever").value = "Like, whatever";
+    Set_Cookie("whatevered", 0, -1);
+  } else {
+    document.getElementById("whatever").className = "clicked";
+    document.getElementById("whatever").value = "Like whatevered!";
+    Set_Cookie("whatevered", 1, 365);
+  }
+}
+function initWhatever() {
+  var whateverStatus = readCookie("whatevered");
+  if (whateverStatus == 1) {
+    document.getElementById("whatever").className = "clicked";
+    document.getElementById("whatever").value = "Like whatevered!";
+  }
+}
+</script>
+<input type="button" id="whatever" class="whateverbkgd" onClick="Whatever()" value="Like, whatever">
+</body>
+</html>
